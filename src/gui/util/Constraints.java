@@ -2,7 +2,7 @@ package gui.util;
 
 import javafx.scene.control.TextField;
 
-public class Constraints {
+public class Constraints { // é uma classe utilitária que possui métodos para que sejam aplicadas restrições em campos de texto (TextField).
 	public static void setTextFieldInteger(TextField txt) {
 		txt.textProperty().addListener((obs, oldValue, newValue) -> {
 			if (newValue != null && !newValue.matches("\\d*")) {
