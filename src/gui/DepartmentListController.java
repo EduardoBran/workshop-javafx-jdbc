@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import model.entities.Department;
 import model.services.DepartmentService;
 
-public class DeparmentListController implements Initializable{  //Classes controller são responsáveis por tratar os eventos/interações com os usuários
+public class DepartmentListController implements Initializable{  //Classes controller são responsáveis por tratar os eventos/interações com os usuários
 	
 	//dependência do DepartmentService
 	private DepartmentService service;
@@ -67,7 +67,7 @@ public class DeparmentListController implements Initializable{  //Classes contro
 	}
 	
 	//método responsável por acessar o serviço, carregar os departamentos e jogar na ObservableList
-	public void UpdateTableView() {
+	public void updateTableView() { //chamado em MainViewController
 		
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
