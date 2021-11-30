@@ -6,8 +6,7 @@ import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
-public class DepartmentService { //É uma classe de serviço responsável por nos fornecer serviços(operações) relacionadas a Department
-	
+public class DepartmentService { //É uma classe de serviço responsável por nos fornecer serviços(operações) relacionadas a Department	
 	
 	private DepartmentDao dao = DaoFactory.createDepartmentDao(); //classe DaoFactory, método createDepartmentDao
 	
