@@ -35,16 +35,16 @@ public class MainViewController implements Initializable {  //Classes controller
 	}
 	
 	@FXML
-	public void onMenuItemDepartmentAction() {
-		loadView("/gui/DepartmentList.fxml" , (DepartmentListController controller) -> {
+	public void onMenuItemDepartmentAction() { //na hora de passar a chamanda de loadView, foi incluso um segundo parâmentro com uma função para inicializar o controlador
+		loadView("/gui/DepartmentList.fxml" , (DepartmentListController controller) -> { //função do tipo DepartmentListController chamada de controller, setinha da expressao lambida, dps no corpo da função é chamada a inicizalização do controle  
 			controller.setDepartmentService(new DepartmentService());
-			controller.updateTableView();
+			controller.updateTableView(); //método updateTableVIew da classe DepartmentViewController
 		});
 	}
 	
 	@FXML
 	public void onMenuItemAboutAction() {		
-		loadView("/gui/About.fxml" , x -> {});
+		loadView("/gui/About.fxml" , x -> {}); //ação de inicialização vazia pq nao tem nada
 	}	
 	
 	@Override
@@ -52,8 +52,8 @@ public class MainViewController implements Initializable {  //Classes controller
 		
 	}
 	
-	//função para abrir outra tela
-	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { //synchrinized garante que o proceso nao sera interrompido
+	//função para abrir outra tela //synchrinized garante que o proceso nao sera interrompido
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { 
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
@@ -67,8 +67,8 @@ public class MainViewController implements Initializable {  //Classes controller
 			mainVBox.getChildren().add(mainMenu);
 			mainVBox.getChildren().addAll(newVBox.getChildren());
 			
-			T controller = loader.getController();
-			initializingAction.accept(controller);
+			T controller = loader.getController(); // comando para ativar a função passada (initializingAction)
+			initializingAction.accept(controller); // executando a função
 		}
 		catch(IOException e){
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);

@@ -58,7 +58,7 @@ public class DepartmentListController implements Initializable{  //Classes contr
 	private void initializeNodes() {
 		
 		//comando para iniciar apropriadamente o comportamento das minhas colunas da tabela
-		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id")); //id da classe Department
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id")); //id da classe Department (nome da tabela)
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
 		//código para que a tablea acompanhe o tamanho da tela do projeto
@@ -74,6 +74,6 @@ public class DepartmentListController implements Initializable{  //Classes contr
 		}
 		List<Department> list = service.findAll(); //recupera os departamentos do serviço
 		obsList = FXCollections.observableList(list);  //carregando a lista dentro do ObservableList
-		tableViewDepartment.setItems(obsList);		
+		tableViewDepartment.setItems(obsList);		   //atualiza conteudo da tabela
 	}
 }
