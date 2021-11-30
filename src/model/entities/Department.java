@@ -1,13 +1,15 @@
 package model.entities;
 
-public class Department {
+import java.io.Serializable;
+
+public class Department implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String name;
 	
 	public Department() {
-		
 	}
 
 	public Department(Integer id, String name) {
@@ -32,7 +34,7 @@ public class Department {
 	}
 
 	@Override
-	public int hashCode() {	//gerando HashCode e Equals para que os meus objetos possam ser comparados pelo conteúdo ao invés da referência de ponteiros
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
