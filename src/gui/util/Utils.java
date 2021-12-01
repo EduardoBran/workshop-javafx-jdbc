@@ -12,3 +12,7 @@ public class Utils { //Esta classe tem a função de retornar o stage(palco) atual
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}	
 }
+
+// Esté método é para eu acessar o Palco (Stage) daonde o meu
+// controle que recebeu o evento (ActionEvent event) está.
+// Se eu clico no botão eu vou pegar o Palco(Stage daquele botão)

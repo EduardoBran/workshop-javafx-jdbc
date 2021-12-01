@@ -10,7 +10,7 @@ public class DepartmentService { //É uma classe de serviço responsável por nos f
 	
 	private DepartmentDao dao = DaoFactory.createDepartmentDao(); //classe DaoFactory, método createDepartmentDao
 	
-	public List<Department> findAll(){
+	public List<Department> findAll(){ //chamada no método updateView() da classe DepartmentListController
 		
 		return dao.findAll();		
 	}

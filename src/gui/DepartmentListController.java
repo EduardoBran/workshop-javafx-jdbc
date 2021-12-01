@@ -31,6 +31,8 @@ public class DepartmentListController implements Initializable{  //Classes contr
 	//dependência do DepartmentService
 	private DepartmentService service;
 	
+	private ObservableList<Department> obsList;
+	
 	//referencias para os nosso componentes da tela DepartmentList (botão, tabela e colunas)
 	@FXML
 	private TableView<Department> tableViewDepartment;
@@ -44,11 +46,10 @@ public class DepartmentListController implements Initializable{  //Classes contr
 	@FXML
 	private Button btNew;
 	
-	private ObservableList<Department> obsList;
-	
+	//método do tratamento de eventos do clico do botão btNew
 	@FXML
-	public void onBtNewAction(ActionEvent event) {   //método do tratamento de eventos do clico do botão btNew
-		Stage parentStage = Utils.palcoAtual(event);
+	public void onBtNewAction(ActionEvent event) {   
+		Stage parentStage = Utils.palcoAtual(event); //método palcoAtual da classe Utils
 		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
 	}
 	
@@ -82,24 +83,24 @@ public class DepartmentListController implements Initializable{  //Classes contr
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-		List<Department> list = service.findAll(); //recupera os departamentos do serviço
+		List<Department> list = service.findAll(); //recupera os departamentos do serviço - método findAll() da classe DepartmentService
 		obsList = FXCollections.observableList(list);  //carregando a lista dentro do ObservableList
 		tableViewDepartment.setItems(obsList);		   //atualiza conteudo da tabela
 	}
 	
-	//funçao para carregar a janela do formulario e preencher um novo departamento.
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	//funçao para carregar a janela do formulario de preenchimento de um novo departamento.
+	private void createDialogForm(String absoluteName, Stage parentStage) { //chamanda na função do botão de novo departamento
 		
-		//instanciando a janeia de dialogo
+		//Lógica pra abrir janela de formulário PALCO
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Enter Department data");
-			dialogStage.setScene(new Scene(pane));
+			dialogStage.setScene(new Scene(pane)); //setScene - escolhendo quem vai ser a cena. (New Scene(pane) - criando a nova cena pq como é um noto Stage tba vai ser uma nova cena(pane)
 			dialogStage.setResizable(false); //para poder deixar a janela ser redimensionada
-			dialogStage.initOwner(parentStage);
+			dialogStage.initOwner(parentStage); //parenteStage é o pai dessa janela por isso é passada essa informação no método
 			dialogStage.initModality(Modality.WINDOW_MODAL); //deixa a janela modal (travada), enquanto nao fechar esta janela, nao pode acessar as outras.
 			dialogStage.showAndWait();
 			

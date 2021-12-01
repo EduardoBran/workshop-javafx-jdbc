@@ -52,7 +52,7 @@ public class MainViewController implements Initializable {  //Classes controller
 		
 	}
 	
-	//função para abrir outra tela //synchrinized garante que o proceso nao sera interrompido
+	//função para abrir outra tela VBOX //synchrinized garante que o proceso nao sera interrompido
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { 
 		
 		try {
