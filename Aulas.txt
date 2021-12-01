@@ -1,0 +1,15 @@
+//Aula 283
+//Passando um objeto Department para formulário DepartmentForm.
+//O motivo é porque este formulário vai servir tanto para a gente inserir
+//um novo Departamento no Banco de Daods quanto pra atualizar um Departamento
+//existente.
+// Vamos criar uma dependência para um Departamento com o metodo set.
+// Vamos criar um método para atualizar os dados do formulario com base neste objeto Department
+
+// No DepartmentListController atualizar o método onBtNewAction e createDialogForm
+
+// Em onBtNewAction como é um botão para cadastrar um novo Departament, o formulario
+// começará vazio.
+// Entao preciso instanciar um departamento vazio ( Department obj = new Department(); )
+// Agora preciso injetar este obj no controlador do formulário.
+// Pra isso foi colocado um parametro a mais em createDialogForm ( obj ).

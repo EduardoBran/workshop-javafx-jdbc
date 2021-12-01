@@ -50,7 +50,8 @@ public class DepartmentListController implements Initializable{  //Classes contr
 	@FXML
 	public void onBtNewAction(ActionEvent event) {   
 		Stage parentStage = Utils.palcoAtual(event); //método palcoAtual da classe Utils
-		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
+		Department obj = new Department(); //instanciando um departamento vazio
+		createDialogForm(obj, "/gui/DepartmentForm.fxml", parentStage);
 	}
 	
 	//injetando a dependência
@@ -89,12 +90,17 @@ public class DepartmentListController implements Initializable{  //Classes contr
 	}
 	
 	//funçao para carregar a janela do formulario de preenchimento de um novo departamento.
-	private void createDialogForm(String absoluteName, Stage parentStage) { //chamanda na função do botão de novo departamento
+	private void createDialogForm(Department obj, String absoluteName, Stage parentStage) { //chamanda na função do botão de novo departamento
 		
 		//Lógica pra abrir janela de formulário PALCO
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			//injetando o obj na tela de DepartmentForm
+			DepartmentFormController controller =  loader.getController();//pegando a referencia do Controlador
+			controller.setDepartment(obj); //injetando o obj no controlador
+			controller.updateFormData();   //carregando o obj no formulario
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Enter Department data");
