@@ -3,18 +3,27 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import db.DbException;
+import gui.util.Alerts;
 import gui.util.Constraints;
+import gui.util.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable{
 	
-	//dependencia para o Department
+	//dependencia para o DepartmentService
 	private Department entity; //nome entity pq é a entidade relacionada a esse formulário
+	
+	//dependencia para o DepartmentService
+	private DepartmentService departmentService;
 	
 	//declaração dos componentes da tela (dois TextField, dois botoes e um label de erro
 	@FXML
@@ -34,14 +43,51 @@ public class DepartmentFormController implements Initializable{
 		this.entity = entity; //agora o DepartmentFormController possui uma instancia de Department
 	}
 	
-	@FXML
-	public void onBtSaveAction() {
-		System.out.println("onBtSaveAction");
+	public void setDepartmentService(DepartmentService departmentService) {
+		this.departmentService = departmentService;
 	}
 	
 	@FXML
-	public void onBtCancelAction() {
-		System.out.println("onBtCancelAction");
+	public void onBtSaveAction(ActionEvent event) {
+		
+		if(entity == null) {//programação defensiva
+			throw new IllegalStateException("Entity was null.");
+		}
+		if(departmentService == null) {//programação defensiva
+			throw new IllegalStateException("Service was null.");
+		}		
+		
+		//código para salvar nosso departamento no Banco de Dados. A partir do dado preenchido na tela (no caso só o nome do Departamento) eu vou ter que instanciar um Department e salvar no BD
+		try {
+			
+			if (txtName.getText() == null) { //se o nome estiver vazio
+				Utils.palcoAtual(event).close();
+			}else {
+				entity = getFormData(); //entity = getFormData(); //responsável por pegar os dados das caixinhas do formulario e instanciar um Departamento
+				departmentService.saveOrUpdate(entity); //salvou no BD
+			}
+			//fechando a janela dps que salvou
+			Utils.palcoAtual(event).close(); //pegando a referência da janela atual (que é a jaanela do formulário) por isso foi acrescentando o (ActionEvent event) no método
+		}
+		catch (DbException e){
+			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	//método responsável por instanciar um novo Department, pegar os dados do formulario e retorna um novo objeto Department com esses dados.
+	private Department getFormData() { 
+		
+		Department obj = new Department(); //criou(instanciou) um objeto vazio
+		obj.setId(Utils.tryParseToInt(txtId.getText())); //id do objeto Department vai ser o id que estvier preenchido na caixinha. Chamada a função da classe Utils para converter para inteiro
+		obj.setName(txtName.getText());
+		
+		return obj;		
+	}
+
+	@FXML
+	public void onBtCancelAction(ActionEvent event) {
+		
+		Utils.palcoAtual(event).close();
 	}
 	
 		
@@ -58,7 +104,7 @@ public class DepartmentFormController implements Initializable{
 	}
 	
 	//método responsável por pegar os dados de Department entity e popular as caixas de texto do formulário
-	public void updateFormData() {
+	public void updateFormData() { //chamado no método createDialogForm() da clase DepartmentListController
 		
 		if (entity == null) { //programação defensiva
 			throw new IllegalStateException("Entity was null."); 

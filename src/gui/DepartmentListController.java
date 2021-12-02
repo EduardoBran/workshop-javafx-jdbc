@@ -66,7 +66,6 @@ public class DepartmentListController implements Initializable{  //Classes contr
 		initializeNodes(); //método auxiliar para iniciar componentes da minha tela		
 	}
 
-
 	private void initializeNodes() {
 		
 		//comando para iniciar apropriadamente o comportamento das minhas colunas da tabela
@@ -100,7 +99,8 @@ public class DepartmentListController implements Initializable{  //Classes contr
 			//injetando o obj na tela de DepartmentForm
 			DepartmentFormController controller =  loader.getController();//pegando a referencia do Controlador
 			controller.setDepartment(obj); //injetando o obj no controlador
-			controller.updateFormData();   //carregando o obj no formulario
+			controller.setDepartmentService(new DepartmentService()); //injeção de dependência
+			controller.updateFormData();   //carregando os dados de ' setDepartment(obj) ' no formulario
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Enter Department data");
