@@ -16,7 +16,7 @@ public class DepartmentService { //É uma classe de serviço responsável por nos f
 	}
 	
 	//método para inserir um Departamente no banco ou atualizar um existente
-	public void saveOrUpdate(Department obj) {
+	public void saveOrUpdate(Department obj) { //chamado no método 
 		
 		if (obj.getId() == null) { //se o Id for nulo, ele insere. Se o ID ja for existente, ele atualiza
 			

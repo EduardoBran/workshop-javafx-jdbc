@@ -18,9 +18,12 @@
 
 // Na classe Utils , implementar o método tryParseToInt para ajudar a converter o valor da // caixinha pra inteiro
 
-// Na classe DepartmentService, criar o método saveOrUpdate que vai ser um método para // inserir um Departamente no banco ou atualizar um existente
+// Na classe DepartmentService, criar o método saveOrUpdate que vai ser um método para 
+// inserir um Departamente no banco ou atualizar um existente
 
 // Na calsse DepartmentFormController , criar uma dependência com o DepartmentService com // método set
-// Implementar a ação de onBtSaveAction e onBtCancelAction
+// Implementar a ação de onBtSaveAction e onBtCancelAction.
 
 // Na Classe DepartmentListController, injetar a dependência de DepartmentService
+
+//Aula 285

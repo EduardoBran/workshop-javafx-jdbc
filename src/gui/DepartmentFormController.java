@@ -1,9 +1,12 @@
 package gui;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DbException;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -25,6 +28,8 @@ public class DepartmentFormController implements Initializable{
 	//dependencia para o DepartmentService
 	private DepartmentService departmentService;
 	
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>(); //permite que objetos se inscrevam nesta List para receber o evento
+		
 	//declaração dos componentes da tela (dois TextField, dois botoes e um label de erro
 	@FXML
 	private TextField txtId;
@@ -47,6 +52,12 @@ public class DepartmentFormController implements Initializable{
 		this.departmentService = departmentService;
 	}
 	
+	//método para inscrever o ' listener ' na lista
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		
+		dataChangeListeners.add(listener);
+	}
+	
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
 		
@@ -63,14 +74,23 @@ public class DepartmentFormController implements Initializable{
 			if (txtName.getText() == null) { //se o nome estiver vazio
 				Utils.palcoAtual(event).close();
 			}else {
-				entity = getFormData(); //entity = getFormData(); //responsável por pegar os dados das caixinhas do formulario e instanciar um Departamento
+				entity = getFormData(); //responsável por pegar os dados das caixinhas do formulario e instanciar um Departamento
 				departmentService.saveOrUpdate(entity); //salvou no BD
+				notifyDataChangeListeners(); //método para notificar os listeners
 			}
 			//fechando a janela dps que salvou
 			Utils.palcoAtual(event).close(); //pegando a referência da janela atual (que é a jaanela do formulário) por isso foi acrescentando o (ActionEvent event) no método
 		}
 		catch (DbException e){
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	//método para notificar a emissão do evento
+	private void notifyDataChangeListeners() {
+		
+		for (DataChangeListener listener : dataChangeListeners) { //para cada DataChangeListener listener pertencente a minha lista dataChangeListeners
+			listener.onDataChanged();
 		}
 	}
 	
