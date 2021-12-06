@@ -44,3 +44,8 @@
 // Implementar o método setErrorMessages.
 // No método onBtSaveAction dar um catch no Validation Exception 
 
+//Aula 287
+// Fazer a operação de atualização de departamento.
+// Criar um novo atributo tableColumnEDIT na clase DepartmentListController
+// Criar um método initEditButtons que vai criar um botão de edição em cada linha da tabela
+// (É um código específico tirado do stackoverflow)
