@@ -49,3 +49,13 @@
 // Criar um novo atributo tableColumnEDIT na clase DepartmentListController
 // Criar um método initEditButtons que vai criar um botão de edição em cada linha da tabela
 // (É um código específico tirado do stackoverflow)
+
+//Aula 288 
+// Remover um departamento. Vamos fazer a mesma abordagem da Operação de Atualização.
+// Vamos acrescentar um botãozinho na tabela.
+// Antes de apagar vamos mostrar um alert. Logo, na classe Alert vamos criar um método // chamado showConfirmation()
+
+// Na classe DepartmentService criar um método para Remover um Departamento.
+
+// Na classe DepartmentListController criar um novo atributo tableColumnREMOVE
+// Criar um método initRemoveButtons

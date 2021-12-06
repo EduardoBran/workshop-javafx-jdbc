@@ -15,8 +15,8 @@ public class DepartmentService { //É uma classe de serviço responsável por nos f
 		return dao.findAll();		
 	}
 	
-	//método para inserir um Departamente no banco ou atualizar um existente
-	public void saveOrUpdate(Department obj) { //chamado no método 
+	//método para inserir ou atualizar um Departamente no banco de dados
+	public void saveOrUpdate(Department obj) { //chamado no método onBtSaveAction(ActionEvent event) da classe DepartmentFormController
 		
 		if (obj.getId() == null) { //se o Id for nulo, ele insere. Se o ID ja for existente, ele atualiza
 			
@@ -26,6 +26,11 @@ public class DepartmentService { //É uma classe de serviço responsável por nos f
 			
 			dao.update(obj);
 		}
+	}
+	
+	public void remove(Department obj) {
+		
+		dao.deleteById(obj.getId());
 	}
 }
 //para recuperar os valores do BD
