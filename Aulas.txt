@@ -27,3 +27,20 @@
 // Na Classe DepartmentListController, injetar a dependência de DepartmentService
 
 //Aula 285
+
+// criar uma interface DataChangeListener
+
+// A classe DepartmentFormController sera subject, ou seja a classe que vai emitir o // evento.
+// A classe DepartmentFormController terá uma lista ( List<DataChangeListener> ) que irá // guardar os objetos interessados em receber o evento. Para que esses objetos possam se // inscrever para receber a lista, preciso disponibilizar um metodo // subscribeDataChangeListener()
+
+// No DepartmentListController implementar a interface DataChangeListener
+
+//Aula 286
+// Vamos implementar uma validação de dados e assim criar uma exceção personalizada de
+// validação.
+// Criar a classe ValidationException
+
+// Na classe DepartmentFormController, implementar algumas verificações e lançar a // validation exception se for o caso.
+// Implementar o método setErrorMessages.
+// No método onBtSaveAction dar um catch no Validation Exception 
+

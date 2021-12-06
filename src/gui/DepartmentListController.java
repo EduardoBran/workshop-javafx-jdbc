@@ -101,7 +101,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 			DepartmentFormController controller =  loader.getController();//pegando a referencia do Controlador
 			controller.setDepartment(obj); //injetando o obj no controlador
 			controller.setDepartmentService(new DepartmentService()); //injeção de dependência
-			controller.subscribeDataChangeListener(this); //estou me inscrevendo para receber o evento
+			controller.subscribeDataChangeListener(this); //estou me inscrevendo para receber o evento , método da classe DepartmentFormController
 			controller.updateFormData();   //carregando os dados de ' setDepartment(obj) ' no formulario
 			
 			Stage dialogStage = new Stage();
@@ -120,7 +120,6 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	@Override
 	public void onDataChanged() { //na hora que disparar que os eventos foram alterados, eu chamo a função updateTableView
 		
-		updateTableView();
-		
+		updateTableView();		
 	}
 }
