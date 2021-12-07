@@ -17,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.DepartmentService;
+import model.services.SellerService;
 
 public class MainViewController implements Initializable {  //Classes controller são responsáveis por tratar os eventos/interações com os usuários
 	
@@ -31,7 +32,10 @@ public class MainViewController implements Initializable {  //Classes controller
 	
 	@FXML
 	public void onMenuItemSellerAction() {
-		System.out.println("onMenuItemSellerAction");
+			loadView("/gui/SellerList.fxml" , (SellerListController controller) -> { //função do tipo DepartmentListController chamada de controller, setinha da expressao lambida, dps no corpo da função é chamada a inicizalização do controle  
+			controller.setSellerService(new SellerService());
+			controller.updateTableView(); //método updateTableVIew da classe DepartmentViewController
+		});
 	}
 	
 	@FXML
