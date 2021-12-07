@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +27,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
 import model.services.SellerService;
@@ -116,30 +121,30 @@ public class SellerListController implements Initializable, DataChangeListener{ 
 	
 	//funçao para carregar a janela do formulario de preenchimento de um novo departamento.
 	private void createDialogForm(Seller obj, String absoluteName, Stage parentStage) { //chamanda na função do botão de novo departamento
-//		
-//		//Lógica pra abrir janela de formulário PALCO
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-//			Pane pane = loader.load();
-//			
-//			//injetando o obj na tela de SellerForm
-//			SellerFormController controller =  loader.getController();//pegando a referencia do Controlador
-//			controller.setSeller(obj); //injetando o obj no controlador
-//			controller.setSellerService(new SellerService()); //injeção de dependência
-//			controller.subscribeDataChangeListener(this); //estou me inscrevendo para receber o evento , método da classe SellerFormController
-//			controller.updateFormData();   //carregando os dados de ' setSeller(obj) ' no formulario
-//			
-//			Stage dialogStage = new Stage();
-//			dialogStage.setTitle("Enter Seller data");
-//			dialogStage.setScene(new Scene(pane)); //setScene - escolhendo quem vai ser a cena. (New Scene(pane) - criando a nova cena pq como é um noto Stage tba vai ser uma nova cena(pane)
-//			dialogStage.setResizable(false); //para poder deixar a janela ser redimensionada
-//			dialogStage.initOwner(parentStage); //parenteStage é o pai dessa janela por isso é passada essa informação no método
-//			dialogStage.initModality(Modality.WINDOW_MODAL); //deixa a janela modal (travada), enquanto nao fechar esta janela, nao pode acessar as outras.
-//			dialogStage.showAndWait();
-//			
-//		} catch (IOException e) {
-//			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-//		}
+		
+		//Lógica pra abrir janela de formulário PALCO
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+			//injetando o obj na tela de SellerForm
+			SellerFormController controller =  loader.getController();//pegando a referencia do Controlador
+			controller.setSeller(obj); //injetando o obj no controlador
+			controller.setSellerService(new SellerService()); //injeção de dependência
+			controller.subscribeDataChangeListener(this); //estou me inscrevendo para receber o evento , método da classe SellerFormController
+			controller.updateFormData();   //carregando os dados de ' setSeller(obj) ' no formulario
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Enter Seller data");
+			dialogStage.setScene(new Scene(pane)); //setScene - escolhendo quem vai ser a cena. (New Scene(pane) - criando a nova cena pq como é um noto Stage tba vai ser uma nova cena(pane)
+			dialogStage.setResizable(false); //para poder deixar a janela ser redimensionada
+			dialogStage.initOwner(parentStage); //parenteStage é o pai dessa janela por isso é passada essa informação no método
+			dialogStage.initModality(Modality.WINDOW_MODAL); //deixa a janela modal (travada), enquanto nao fechar esta janela, nao pode acessar as outras.
+			dialogStage.showAndWait();
+			
+		} catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
 	}
 
 	@Override
