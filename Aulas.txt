@@ -60,7 +60,7 @@
 // Na classe DepartmentListController criar um novo atributo tableColumnREMOVE
 // Criar um método initRemoveButtons
 
-//Aula 288
+//Aula 290
 // Vamos começar a fazer o CRUD de vendedores, nesta aula fazer a tela que vai listar os 
 // vendedores.
 // Clonar DepartmentService para SellerService, depois os SellerListController e o 
@@ -68,3 +68,10 @@
 
 // No MainViewController , atualizar o método onMenuItemSellerAction() para abrir a tela
 // Seller
+
+//Aula 291
+// Acrescentar dois métodos de formatação de Data numa listagem de objetos na classe Utils
+
+// Na classe SellerListController, acresentar os atributos email, birthDate, baseSalary
+// Atualizar o método initializeNodes() pois temos que dar instruções para inicializar os // atributos novos
+// No SellerListView acrescentar os tablescolumns dos atributos novos e associa-los.
