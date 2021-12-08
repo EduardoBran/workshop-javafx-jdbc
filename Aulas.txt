@@ -89,3 +89,17 @@
 
 // Na classe SellerFormController, atualizar o método initializeNodes()
 // Atualizar o updateFormData()
+
+//Aula 294
+// ComboBox para escolher o departamento (Lista para escolher o departamento do vendedor)
+// Na classe SellerFormController colocar uma dependência para DepartmentService
+// Atualizar o método setServices (método renomeado)
+
+// Criar atributo do tipo ComboBox
+// Criar a ObservableList
+// Criar método loadAssociatedObjects que vai ser responsável por chamar o // DepartmentService e carregar os departamentos do banco de dados e preenchendo a lista // com estes departamentos
+
+// Chamar o método loadAssociatedObjects() na hora de criar o formulário dentro de // createDialogForm da classe SellerListController
+
+// Criar método para inicializar o ComboBox
+// Colocar o comboBox na SellerForm
