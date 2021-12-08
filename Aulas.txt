@@ -78,3 +78,14 @@
 //Aula 292
 // Fazer o SellerForm.
 // Clonar SellerFormController, SellerForm e descomentar o createDialogForm de // SellerListController
+
+//Aula 293
+// Contrução do Formulário. Vamos acrescentar os TextFields para entrar com os dados assim // como acrescentar o DatePicker para pegar a Data (código pego no statckoverflow)
+// Incluir os atributos TextField e DatePicker (email, birthDate, baseSalary)
+// Criar um novo Label de Erro para cada um dos atributos novos
+// Editar o SellerFormView, criar os Labels para erro, textfields para os campos e o // DatePicker para a data a associa-los aos seus ids
+
+// Na Classe SellerDaoJDBC , no método instatiateSeller, alterar o obj.setBIrthDate
+
+// Na classe SellerFormController, atualizar o método initializeNodes()
+// Atualizar o updateFormData()
