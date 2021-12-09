@@ -1,9 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -133,19 +135,37 @@ public class SellerFormController implements Initializable{
 	}
 	
 	//método responsável por instanciar um novo Seller, pegar os dados do formulario e retorna um novo objeto Seller com esses dados.
-	private Seller getFormData() { 
+	private Seller getFormData() { //chamado em onBtSaveAction()
 		
-		Seller obj = new Seller(); //criou(instanciou) um objeto vazio
-		
+		Seller obj = new Seller(); //criou(instanciou) um objeto vazio		
 		ValidationException exception = new ValidationException("Validation error."); //exceção instanciada
 		
 		obj.setId(Utils.tryParseToInt(txtId.getText())); //id do objeto Seller vai ser o id que estvier preenchido na caixinha. Chamada a função da classe Utils para converter para inteiro
 		
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) { //trim() é pra eliminar qualquer espaço em branco no inicio ou no final
 			exception.addError("name", "  Field can't be empty.");
-		}
-		
+		}		
 		obj.setName(txtName.getText());
+		
+		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) { //trim() é pra eliminar qualquer espaço em branco no inicio ou no final
+			exception.addError("email", "  Field can't be empty.");
+		}
+		obj.setEmail(txtEmail.getText());
+		
+		if (dpBirthDate.getValue() == null) {
+			exception.addError("birthDate", "  Field can't be empty.");
+		}
+		else {
+			Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault())); //recebe o conteudo do DatePicker , atStartOfDay converte o horario da maquina do usuario para o horario padrão de Instant
+			obj.setBirthDate(Date.from(instant));  //converter Instant para Date
+		}	
+		
+		if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")) { //trim() é pra eliminar qualquer espaço em branco no inicio ou no final
+			exception.addError("baseSalary", "  Field can't be empty.");
+		}
+		obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
+		
+		obj.setDepartment(comboBoxDepartment.getValue()); //pegando o valor do Departamento via comboBox
 		
 		if(exception.getErros().size() > 0) { //teste para ver se a coleção de erros tem pelo menos 1 erro
 			throw exception;
@@ -190,6 +210,7 @@ public class SellerFormController implements Initializable{
 		txtEmail.setText(entity.getEmail());
 		Locale.setDefault(Locale.US);
 		txtBaseSalary.setText(String.format("%.2f", entity.getBaseSalary()));
+		
 		if (entity.getBirthDate() != null) {
 			dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault())); //ZoneId pega o fuso do pc da pessoa que usao sistema
 		}
@@ -213,18 +234,26 @@ public class SellerFormController implements Initializable{
 		List<Department> list = departmentService.findAll(); //carregou os departamentos do banco de dados
 		obsList = FXCollections.observableArrayList(list); //jogando os departamentos para a ObservableList
 		comboBoxDepartment.setItems(obsList); //setando a lista como a lista associada ao ComboBox		
-	}
-	
+	} 	
 	
 	//método responsável por pegar os erros da exceção e escrever no Label sem nome
 	private void setErrorMessages(Map<String, String> errors) {
 		
 		Set<String> fields = errors.keySet(); //conjunto de errors
 		
-		if(fields.contains("name")) { //se no conjunto de errors exciste a chave 'name'
-			
-			labelErrorName.setText(errors.get("name"));			
-		}	
+//		if(fields.contains("name")) { //se no conjunto de errors exciste a chave 'name' (que foi criada no método getFormData() através do exception.addError			
+//			labelErrorName.setText(errors.get("name"));			
+//		}
+//		else {
+//			labelErrorName.setText(""); //Caso o label tenha apontado algum erro, a msg ficará escrita. Quando ajeitarmos a msg sera apagada
+//		}
+		labelErrorName.setText((fields.contains("name") ? errors.get("name") : "")); //operador ternário se fields.contains("name") for verdadeira ( ? ) entao errror.get("name") SE NAO ( : ) ""
+		
+		labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
+		
+		labelErrorBirthDate.setText((fields.contains("birthDate") ? errors.get("birthDate") : ""));
+		
+		labelErrorBaseSalary.setText((fields.contains("baseSalary") ? errors.get("baseSalary") : ""));
 	}
 	
 	private void initializeComboBoxDepartment() { //chamado no initizalizeNods()

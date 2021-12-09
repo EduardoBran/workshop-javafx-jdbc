@@ -80,10 +80,11 @@
 // Clonar SellerFormController, SellerForm e descomentar o createDialogForm de // SellerListController
 
 //Aula 293
-// Contrução do Formulário. Vamos acrescentar os TextFields para entrar com os dados assim // como acrescentar o DatePicker para pegar a Data (código pego no statckoverflow)
+// Contrução do Formulário. Vamos acrescentar os TextFields para entrar com os dados // assim como acrescentar o DatePicker para pegar a Data (código pego no // statckoverflow)
 // Incluir os atributos TextField e DatePicker (email, birthDate, baseSalary)
 // Criar um novo Label de Erro para cada um dos atributos novos
-// Editar o SellerFormView, criar os Labels para erro, textfields para os campos e o // DatePicker para a data a associa-los aos seus ids
+// Editar o SellerFormView, criar os Labels para erro, textfields para os campos e o 
+// DatePicker para a data a associa-los aos seus ids
 
 // Na Classe SellerDaoJDBC , no método instatiateSeller, alterar o obj.setBIrthDate
 
@@ -91,15 +92,23 @@
 // Atualizar o updateFormData()
 
 //Aula 294
-// ComboBox para escolher o departamento (Lista para escolher o departamento do vendedor)
+// ComboBox para escolher o departamento (Lista para escolher o departamento do // vendedor)
 // Na classe SellerFormController colocar uma dependência para DepartmentService
 // Atualizar o método setServices (método renomeado)
 
 // Criar atributo do tipo ComboBox
 // Criar a ObservableList
-// Criar método loadAssociatedObjects que vai ser responsável por chamar o // DepartmentService e carregar os departamentos do banco de dados e preenchendo a lista // com estes departamentos
+// Criar método loadAssociatedObjects que vai ser responsável por chamar o 
+// DepartmentService e carregar os departamentos do banco de dados e preenchendo a  
+// lista com estes departamentos
 
-// Chamar o método loadAssociatedObjects() na hora de criar o formulário dentro de // createDialogForm da classe SellerListController
+// Chamar o método loadAssociatedObjects() na hora de criar o formulário dentro de 
+// createDialogForm da classe SellerListController
 
 // Criar método para inicializar o ComboBox
 // Colocar o comboBox na SellerForm
+
+//Aula 295
+// Salvar no Banco de dados inserindo ou atualiando um vendendo existente.
+// Atualizar o método getFormData() da classe SellerFormController
+// Atualizar o método setErrorMessages

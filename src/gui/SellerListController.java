@@ -129,10 +129,10 @@ public class SellerListController implements Initializable, DataChangeListener{ 
 			Pane pane = loader.load();
 			
 			//injetando o obj na tela de SellerForm
-			SellerFormController controller =  loader.getController();//pegando a referencia do Controlador
+			SellerFormController controller = loader.getController();//pegando a referencia do Controlador
 			controller.setSeller(obj); //injetando o obj no controlador
 			controller.setServices(new SellerService(), new DepartmentService()); //injeção de dependência
-			controller.loadAssociatedObjects();
+			controller.loadAssociatedObjects(); //método da classe SellerFormController
 			controller.subscribeDataChangeListener(this); //estou me inscrevendo para receber o evento , método da classe SellerFormController
 			controller.updateFormData();   //carregando os dados de ' setSeller(obj) ' no formulario
 			

@@ -34,6 +34,17 @@ public class Utils {
 		}
 	}	
 	
+	//método para converter o valor da caixinha pra Double
+	public static Double tryParseToDouble(String str) { 
+		
+		try { //tentar fazer a conversão
+			return Double.parseDouble(str);
+		}
+		catch (NumberFormatException e) {
+			return null;
+		}
+	}	
+	
 	//formatar a data numa listagem de objetos
 	public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
 		tableColumn.setCellFactory(column -> {
